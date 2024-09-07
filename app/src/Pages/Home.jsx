@@ -1,12 +1,16 @@
-import React from 'react';
-import Header from '../Components/Header';
+import React from "react";
+import Header from "../Components/Header";
+import Categories from "../Components/Categories";
+import MainProducts from "../Components/MainProducts";
+import Sales from "../Components/Sales";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <h1>Home</h1>
-      <p>Welcome to the Home page!</p>
+      <Header />;
+      <Categories />;
+      <MainProducts />;
+      <Sales />
     </>
   );
 }

@@ -1,11 +1,12 @@
 import React from "react";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
+import Banner from "./Banner";
 
 export default function Header() {
-  return(
+  return (
     <header>
-      <h1>Header</h1>
-      <NavBar />
+      <Banner />
+      {/* <NavBar /> */}
     </header>
-  )
+  );
 }
