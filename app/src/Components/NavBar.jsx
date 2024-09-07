@@ -38,15 +38,6 @@ export default function NavBar() {
       </nav>
       {/* Trocar href carrinho */}
       {/* Trocar img carrinho */}
-      <a href="carrinho.html" title="">
-        <img
-          src="../Assets/img/carrinho.png"
-          alt=""
-          width="30px"
-          height="30px"
-        />
-      </a>
-      {/* <img src="../Assets/img/menu.png" alt="" className="menu-celular" onClick={()=>{}} /> */}
     </>
   );
 }

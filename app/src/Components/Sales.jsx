@@ -1,4 +1,5 @@
 import React from "react";
+import banner2 from "../assets/img/banner-2.png";
 
 export default function Sales() {
   return (
@@ -7,7 +8,7 @@ export default function Sales() {
       <div className="corpo-categorias">
         <div className="linha">
           <div className="col-2">
-            <img src="assets/img/banner-2.png" alt="" className="oferta-img" />
+            <img src={banner2} alt="" className="oferta-img" />
           </div>
           <div className="col-2">
             <p>Produto exclusivo da Loja DayCare</p>

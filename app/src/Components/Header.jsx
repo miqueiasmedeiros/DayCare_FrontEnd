@@ -3,10 +3,5 @@ import React from "react";
 import Banner from "./Banner";
 
 export default function Header() {
-  return (
-    <header>
-      <Banner />
-      {/* <NavBar /> */}
-    </header>
-  );
+  return <Banner />;
 }

@@ -1,11 +1,24 @@
 import React from "react";
-// import { IonIcon } from "@ionic/react";
-// import { starOutline } from "ionicons/icons";
+import testimonials from "./TestimonialsObject";
+import TestimonialsCard from "./TestimonialCards";
 
 export default function Testimonials() {
-  renderTestimonialsCard() => {
-    return 
+  function renderTestimonialsCard() {
+    return testimonials.map((testimonial) => {
+      return (
+        <div key={testimonial.id} className="col-3">
+          <TestimonialsCard
+            key={testimonial.id}
+            id={testimonial.id}
+            name={testimonial.name}
+            testimonials={testimonial.testimonial}
+            image={testimonial.image}
+          />
+        </div>
+      );
+    });
   }
+
   return (
     <div className="depoimentos">
       <div className="corpo-categorias">
