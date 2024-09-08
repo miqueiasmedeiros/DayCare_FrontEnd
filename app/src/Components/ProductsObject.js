@@ -18,6 +18,7 @@ const products = [
     preco: 100,
     descricao: "Descrição do produto 1",
     imagem: { produto1 },
+    galeria: produto1,
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ const products = [
     preco: 200,
     descricao: "Descrição do produto 2",
     imagem: { produto2 },
+    galeria: produto2,
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const products = [
     preco: 300,
     descricao: "Descrição do produto 3",
     imagem: { produto3 },
+    galeria: produto3,
   },
   {
     id: 4,
@@ -39,6 +42,7 @@ const products = [
     preco: 400,
     descricao: "Descrição do produto 4",
     imagem: { produto4 },
+    galeria: produto4,
   },
   {
     id: 5,
@@ -46,6 +50,7 @@ const products = [
     preco: 500,
     descricao: "Descrição do produto 5",
     imagem: { produto5 },
+    galeria: produto5,
   },
   {
     id: 6,
@@ -53,6 +58,7 @@ const products = [
     preco: 600,
     descricao: "Descrição do produto 6",
     imagem: { produto6 },
+    galeria: produto6,
   },
   {
     id: 7,
@@ -60,6 +66,7 @@ const products = [
     preco: 700,
     descricao: "Descrição do produto 7",
     imagem: { produto7 },
+    galeria: produto7,
   },
   {
     id: 8,
@@ -67,6 +74,7 @@ const products = [
     preco: 800,
     descricao: "Descrição do produto 8",
     imagem: { produto8 },
+    galeria: produto8,
   },
   {
     id: 9,
@@ -74,6 +82,7 @@ const products = [
     preco: 900,
     descricao: "Descrição do produto 9",
     imagem: { produto9 },
+    galeria: produto9,
   },
   {
     id: 10,
@@ -81,6 +90,7 @@ const products = [
     preco: 1000,
     descricao: "Descrição do produto 10",
     imagem: { produto10 },
+    galeria: produto10,
   },
   {
     id: 11,
@@ -88,6 +98,7 @@ const products = [
     preco: 1100,
     descricao: "Descrição do produto 11",
     imagem: { produto11 },
+    galeria: produto11,
   },
   {
     id: 12,
@@ -95,6 +106,7 @@ const products = [
     preco: 1200,
     descricao: "Descrição do produto 12",
     imagem: { produto12 },
+    galeria: produto12,
   },
 ];
 

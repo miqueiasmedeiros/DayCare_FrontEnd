@@ -9,7 +9,7 @@ export default function MainProductsCard(props) {
   // console.log(imagem);
   return (
     <>
-      <a href={nome} title="">
+      <a href={`/productview/${nome}`} title="">
         <img src={img} alt={nome} />
       </a>
       <h4>{nome}</h4>
@@ -27,7 +27,6 @@ export default function MainProductsCard(props) {
 }
 
 MainProductsCard.propTypes = {
-  // id: PropTypes.string.isRequired,
   nome: PropTypes.string.isRequired,
   preco: PropTypes.string.isRequired,
   descricao: PropTypes.string.isRequired,

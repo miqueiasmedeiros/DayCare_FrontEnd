@@ -1,4 +1,7 @@
 import React from "react";
+import google from "../assets/img/google.png";
+import apple from "../assets/img/apple.png";
+import logo2 from "../assets/img/logo-2.png";
 
 export default function Footer() {
   return (
@@ -9,12 +12,12 @@ export default function Footer() {
             <h3>Baixe o nosso App</h3>
             <p>Baixe nosso aplicativo nas melhores plataformas.</p>
             <div className="app-logo">
-              <img src="assets/img/google.png" alt="" />
-              <img src="assets/img/apple.png" alt="" />
+              <img src={google} alt="" />
+              <img src={apple} alt="" />
             </div>
           </div>
           <div className="rodape-col-2">
-            <img src="assets/img/logo-2.png" alt="" />
+            <img src={logo2} alt="" />
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio,
               quis debitis.

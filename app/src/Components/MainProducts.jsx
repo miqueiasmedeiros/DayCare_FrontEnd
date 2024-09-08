@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import products from "./ProductsObject";
 import MainProductsCard from "./MainProductsCard";
 
@@ -21,12 +22,24 @@ export default function MainProducts() {
   }
   return (
     <div className="corpo-categorias">
-      <h2 className="titulo">Produtos em Destaque</h2>
-      {/* <!-- INICIO LINHA DO CORPO CATEGORIAS --> */}
-      <div className="linha">{renderProductsCard(0, 4)}</div>
-      <h2 className="titulo"> Novos Produtos </h2>
-      {/* <!-- INICIO LINHA DO CORPO CATEGORIAS --> */}
-      <div className="linha">{renderProductsCard(4, 12)}</div>
+      {useLocation().pathname === "/" ? (
+        <>
+          <h2 className="titulo">Produtos em Destaque</h2>
+          <div className="linha">{renderProductsCard(0, 4)}</div>
+        </>
+      ) : null}
+
+      {useLocation().pathname === "/" ? (
+        <>
+          <h2 className="titulo"> Novos Produtos </h2>
+          <div className="linha">{renderProductsCard(4, 12)}</div>
+        </>
+      ) : (
+        <>
+          <h2 className="titulo"> Produtos Relacionados </h2>
+          <div className="linha">{renderProductsCard(4, 8)}</div>
+        </>
+      )}
     </div>
   );
 }
