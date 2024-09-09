@@ -11,13 +11,13 @@ export default function NavBar() {
         </li>
         <li>
           {" "}
-          <a href="/store" title="">
+          <a href="/products" title="">
             Produtos
           </a>
         </li>
         <li>
           {" "}
-          <a href="/empresa" title="">
+          <a href="/company" title="">
             Empresa
           </a>
         </li>

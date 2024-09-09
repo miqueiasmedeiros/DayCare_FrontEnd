@@ -1,9 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import products from "./ProductsObject";
 import MainProductsCard from "./MainProductsCard";
 
 export default function MainProducts() {
+  const location = useLocation();
+  const { productName } = useParams();
+
   function renderProductsCard(index1, index2) {
     const mainProducts = products.slice(index1, index2);
     return mainProducts.map((product) => {
@@ -22,7 +25,7 @@ export default function MainProducts() {
   }
   return (
     <div className="corpo-categorias">
-      {useLocation().pathname === "/" ? (
+      {location.pathname === "/" ? (
         <>
           <h2 className="titulo">Produtos em Destaque</h2>
           <div className="linha">{renderProductsCard(0, 4)}</div>
@@ -34,12 +37,16 @@ export default function MainProducts() {
           <h2 className="titulo"> Novos Produtos </h2>
           <div className="linha">{renderProductsCard(4, 12)}</div>
         </>
-      ) : (
+      ) : null}
+      {location.pathname.startsWith("/productview/") && productName ? (
         <>
           <h2 className="titulo"> Produtos Relacionados </h2>
           <div className="linha">{renderProductsCard(4, 8)}</div>
         </>
-      )}
+      ) : null}
+      {location.pathname === "/products" ? (
+        <div className="linha">{renderProductsCard(0, 12)}</div>
+      ) : null}
     </div>
   );
 }
