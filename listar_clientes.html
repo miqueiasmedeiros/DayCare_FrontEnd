@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Biblioteca jQuery para AJAX -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        #response-message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+
+    <!-- Exibir mensagem de erro ou status -->
+    <div id="response-message"></div>
+
+    <!-- Tabela para listar os clientes -->
+    <table id="clientesTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os dados dos clientes serão inseridos aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função para listar clientes ao carregar a página
+        function listarClientes() {
+            $.ajax({
+                url: 'listar_clientes.php', // Arquivo PHP que contém o cURL para buscar clientes
+                type: 'GET',
+                success: function(response) {
+                    // Supondo que o PHP retorna um JSON
+                    const clientes = JSON.parse(response);
+
+                    if (clientes.length === 0) {
+                        $('#response-message').html('<p>Nenhum cliente encontrado.</p>');
+                        return;
+                    }
+
+                    // Limpa a tabela antes de popular
+                    $('#clientesTable tbody').empty();
+
+                    // Iterar sobre cada cliente e inserir na tabela
+                    clientes.forEach(function(cliente) {
+                        const row = '<tr>' +
+                                    '<td>' + cliente.id + '</td>' +
+                                    '<td>' + cliente.name + '</td>' +
+                                    '<td>' + cliente.email + '</td>' +
+                                    '<td>' + cliente.cidade + '</td>' +
+                                    '<td>' + cliente.estado + '</td>' +
+                                    '</tr>';
+                        $('#clientesTable tbody').append(row);
+                    });
+                },
+                error: function() {
+                    $('#response-message').html('<p style="color: red;">Erro ao buscar clientes. Tente novamente.</p>');
+                }
+            });
+        }
+
+        // Chama a função listarClientes ao carregar a página
+        $(document).ready(function() {
+            listarClientes();
+        });
+    </script>
+</body>
+</html>

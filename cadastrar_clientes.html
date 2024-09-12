@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cliente</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Biblioteca jQuery para AJAX -->
+</head>
+<body>
+    <h1>Cadastro de Cliente</h1>
+
+    <!-- Exibir mensagem de sucesso ou erro -->
+    <div id="response-message"></div>
+
+    <!-- Formulário de cadastro de cliente -->
+    <form id="cliente-form">
+        <label for="name">Nome:</label>
+        <input type="text" name="name" id="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br>
+
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" required><br>
+
+        <label for="endereco">Endereço:</label>
+        <input type="text" name="endereco" id="endereco"><br>
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" name="cidade" id="cidade"><br>
+
+        <label for="estado">Estado:</label>
+        <input type="text" name="estado" id="estado"><br>
+
+        <input type="submit" value="Cadastrar Cliente">
+    </form>
+
+    <script>
+        // Capturar o evento de submissão do formulário
+        $('#cliente-form').submit(function(e) {
+            e.preventDefault(); // Prevenir o redirecionamento
+
+            // Enviar dados via AJAX
+            $.ajax({
+                url: 'cadastrar_cliente.php', // Arquivo PHP que contém o cURL
+                type: 'POST',
+                data: $(this).serialize(), // Enviar todos os campos do formulário
+                success: function(response) {
+                    // Exibir a resposta (erro ou sucesso) na página
+                    $('#response-message').html('<p style="color: green;">' + response + '</p>');
+                },
+                error: function() {
+                    $('#response-message').html('<p style="color: red;">Erro ao cadastrar cliente. Tente novamente.</p>');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
