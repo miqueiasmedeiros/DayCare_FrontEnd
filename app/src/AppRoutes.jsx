@@ -8,6 +8,8 @@ import ProductView from "./Pages/ProductView";
 import Products from "./Pages/Products";
 import Private from "./Components/Private";
 import Account from "./Pages/Account";
+import Company from "./Pages/Company";
+import Contacts from "./Pages/Contacts";
 
 export default function AppRoutes() {
   return (
@@ -18,6 +20,8 @@ export default function AppRoutes() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/subscribe" element={<Subscribe />} />
           <Route exact path="/products" element={<Products />} />
+          <Route exact path="/company" element={<Company />} />
+          <Route exact path="/contacts" element={<Contacts />} />
           <Route
             exact
             path="/productview/:productName"

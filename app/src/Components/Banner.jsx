@@ -13,8 +13,17 @@ export default function Banner() {
             <img src={logo} alt="DayCare" width="125px" />
           </div>
           <NavBar />
-          <a href="/cart" title="">
-            <img src={cart} alt="" width="30px" height="30px" />
+          <a
+            href="/cart"
+            title="Carrinho de Compras"
+            aria-label="Carrinho de Compras"
+          >
+            <img
+              src={cart}
+              alt="Carrinho de Compras"
+              width="30px"
+              height="30px"
+            />
           </a>
         </div>
         <div className="linha">
@@ -29,7 +38,7 @@ export default function Banner() {
             </a>
           </div>
           <div className="col-2">
-            <img src={banner1} alt="" />
+            <img src={banner1} alt="Banner promocional" />
           </div>
         </div>
       </div>

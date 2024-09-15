@@ -12,8 +12,17 @@ export default function ProductsBanner() {
             <img src={logoEscura} alt="DayCare" width="125px" />
           </div>
           <NavBar />
-          <a href="carrinho.html" title="">
-            <img src={cart} alt="" width="30px" height="30px" />
+          <a
+            href="carrinho.html"
+            title="Carrinho de Compras"
+            aria-label="Carrinho de Compras"
+          >
+            <img
+              src={cart}
+              alt="Carrinho de Compras"
+              width="30px"
+              height="30px"
+            />
           </a>
         </div>
       </div>

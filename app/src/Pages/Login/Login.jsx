@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/Auth";
 import Header from "../../Components/Header";
 import "./Login.css";
-import Footer from "../../Components/Footer";
 
 export default function Login() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -94,7 +93,6 @@ export default function Login() {
           </button>
         </form>
       </div>
-      <Footer />
     </>
   );
 }

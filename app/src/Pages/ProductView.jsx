@@ -1,36 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import products from "../Components/ProductsObject";
 import Brands from "../Components/Brands";
 import Header from "../Components/Header";
-import MainProducts from "../Components/MainProducts";
+// import MainProducts from "../Components/MainProducts";
 import Footer from "../Components/Footer";
+import { getProducts } from "../Services/Api";
+// import Loading from "../Components/Loading";
+import MainProductsCard from "../Components/MainProductsCard";
+import Loading from "../Components/Loading";
 
 export default function ProductView() {
+  const [allProducts, setAllProducts] = useState([]);
+  const [product, setProduct] = useState();
+  const [loading, setLoading] = useState(true);
+
   const location = useLocation();
   const path = location.pathname;
-  const productIndex = path.substring(path.lastIndexOf("%") + 2);
 
-  const product = () => {
-    if (productIndex[0] === "0") {
-      return products[productIndex[1] - 1];
-    }
-    return productIndex;
+  const findProduct = (data) => {
+    const productId = parseInt(path.substring(path.lastIndexOf("/") + 1), 10);
+    const foundProduct = data.find(({ id }) => {
+      return id === productId;
+    });
+    setProduct(foundProduct);
+    return foundProduct;
+  };
+
+  const renderCategoriesProducts = () => {
+    const productsCategories = allProducts.filter((element) => {
+      return element.categoria_id === product.categoria_id;
+    });
+    return productsCategories.map((element) => {
+      return (
+        <div key={element.id + element.nome} className="col-4">
+          <MainProductsCard
+            id={element.id}
+            nome={element.nome}
+            preco={element.valor}
+            descricao={element.descricao}
+            imagem={element.foto}
+          />
+        </div>
+      );
+    });
+  };
+
+  const fetchProducts = async () => {
+    const data = await getProducts();
+    setAllProducts(data);
+    findProduct(data);
+    renderCategoriesProducts(data);
+    setLoading(false);
   };
 
   const renderProduct = () => {
-    const { nome, imagem, descricao, preco, galeria } = product();
-    const img = Object.values(imagem)[0];
+    const { nome, foto, descricao, valor } = product;
     return (
       <div className="corpo-categorias ver-produto">
         <div className="linha">
           <div className="col-2">
-            <img src={img} alt="" id="produtoImg" />
+            <img src={foto} alt="" id="produtoImg" />
 
             <div className="img-linha">
               <div className="img-col">
                 <img
-                  src={galeria}
+                  src={foto}
                   alt=""
                   width="100%"
                   className="produtoMiniatura"
@@ -39,7 +73,7 @@ export default function ProductView() {
 
               <div className="img-col">
                 <img
-                  src={galeria}
+                  src={foto}
                   alt=""
                   width="100%"
                   className="produtoMiniatura"
@@ -48,7 +82,7 @@ export default function ProductView() {
 
               <div className="img-col">
                 <img
-                  src={galeria}
+                  src={foto}
                   alt=""
                   width="100%"
                   className="produtoMiniatura"
@@ -57,7 +91,7 @@ export default function ProductView() {
 
               <div className="img-col">
                 <img
-                  src={galeria}
+                  src={foto}
                   alt=""
                   width="100%"
                   className="produtoMiniatura"
@@ -69,7 +103,7 @@ export default function ProductView() {
           <div className="col-2">
             <p>{nome}</p>
             <h1>Compre com desconto</h1>
-            <h4>{`R$ ${preco}`}</h4>
+            <h4>{`R$ ${valor}`}</h4>
             <form action="" method="post">
               <select name="" id="">
                 <option value="">Selecione o Tamanho</option>
@@ -93,12 +127,25 @@ export default function ProductView() {
     );
   };
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <Header />
-      {renderProduct()}
-      <MainProducts />
-      <Brands />
+      {!loading && product ? (
+        <>
+          {renderProduct()}
+          <div className="corpo-categorias">
+            <h2 className="titulo">Produtos Relacionados</h2>
+            <div className="linha">{renderCategoriesProducts()}</div>
+          </div>
+          <Brands />
+        </>
+      ) : (
+        <Loading />
+      )}
       <Footer />
     </>
   );

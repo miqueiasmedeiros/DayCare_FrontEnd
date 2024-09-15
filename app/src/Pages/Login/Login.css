@@ -4,7 +4,7 @@
   align-items: center;
   padding: 5px;
   font-family: "Ubuntu", sans-serif;
-  height: 100vh;
+  height: 80vh;
   background-color: #fff;
   color: #fff;
 }
@@ -17,12 +17,8 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.01) 0%,
-    rgba(255, 82, 59, 1) 100%
-  );
-  /* background-color: #ff523b; */
+  background: #555;
+  color: black;
   height: 35vh;
   width: 30vw;
 }
@@ -52,7 +48,7 @@
   padding: 10px;
   margin: 10px;
   width: 100%;
-  background-color: #555;
+  background-color: #777;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -60,6 +56,7 @@
 }
 
 .submit-button:hover {
-  background-color: #777;
+  background-color: #fff;
   cursor: pointer;
+  color: #555;
 }

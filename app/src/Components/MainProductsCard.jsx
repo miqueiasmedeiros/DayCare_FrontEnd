@@ -4,13 +4,13 @@ import { IonIcon } from "@ionic/react";
 import { starOutline } from "ionicons/icons";
 
 export default function MainProductsCard(props) {
-  const { nome, preco, descricao, imagem } = props;
-  const img = Object.values(imagem);
+  const { id, nome, preco, descricao, imagem } = props;
+  // const img = Object.values(imagem);
   // console.log(imagem);
   return (
     <>
-      <a href={`/productview/${nome}`} title="">
-        <img src={img} alt={nome} />
+      <a href={`/productview/${id}`} title="">
+        <img src={imagem} alt={nome} />
       </a>
       <h4>{nome}</h4>
       <h5>{descricao}</h5>
@@ -27,6 +27,7 @@ export default function MainProductsCard(props) {
 }
 
 MainProductsCard.propTypes = {
+  id: PropTypes.number.isRequired,
   nome: PropTypes.string.isRequired,
   preco: PropTypes.string.isRequired,
   descricao: PropTypes.string.isRequired,
