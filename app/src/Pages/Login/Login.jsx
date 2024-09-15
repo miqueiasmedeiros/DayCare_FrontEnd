@@ -7,7 +7,7 @@ import "./Login.css";
 export default function Login() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [form, setForm] = useState({
-    email: "",
+    login: "",
     password: "",
   });
 
@@ -15,9 +15,13 @@ export default function Login() {
   const navigate = useNavigate();
 
   const formValidation = () => {
-    const isEmailValid = /\S+@\S+\.\S+/.test(form.email);
+    // const isEmailValid = /\S+@\S+\.\S+/.test(form.email);
 
-    if (isEmailValid && form.password.length >= 6) {
+    // if (isEmailValid && form.password.length >= 6) {
+    //   return setButtonDisabled(false);
+    // }
+
+    if (form.password.length >= 6) {
       return setButtonDisabled(false);
     }
     return setButtonDisabled(true);
@@ -54,14 +58,14 @@ export default function Login() {
       <div className="form">
         <form className="login-form">
           <div className="form-login-input">
-            <label htmlFor="email">
-              Email
+            <label htmlFor="login">
+              Login
               <div>
                 <input
-                  id="email"
-                  name="email"
+                  id="Login"
+                  name="login"
                   type="text"
-                  placeholder="Email"
+                  placeholder="Login"
                   required
                   onChange={onInputChange}
                 />
@@ -91,6 +95,9 @@ export default function Login() {
           >
             Login
           </button>
+          <a className="cadastro" href="/register">
+            Crie sua conta
+          </a>
         </form>
       </div>
     </>

@@ -10,8 +10,15 @@ export const setToken = (token) => {
   api.defaults.headers.common.Authorization = `${token}`;
 };
 
-export const createSession = async (username, password) =>
-  api.post("/login", { username, password });
+export const createSession = async (form) => {
+  const response = api.post("/login", form);
+  return response;
+};
+
+export const register = async (form) => {
+  const response = api.post("/usuarios", form);
+  return response;
+};
 
 export const getProducts = async () => {
   try {
@@ -23,6 +30,8 @@ export const getProducts = async () => {
     throw error;
   }
 };
+
+// export const register = async (form) => api.post("/register", form);
 
 // export const getInventory = async (token) =>
 //   api.get("/inventory", {

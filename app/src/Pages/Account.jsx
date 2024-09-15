@@ -1,9 +1,13 @@
 import React from "react";
+import Header from "../Components/Header";
 
 export default function Account() {
   return (
-    <div>
-      <h1>Account</h1>
-    </div>
+    <>
+      <Header />
+      <div>
+        <h1>Account</h1>
+      </div>
+    </>
   );
 }

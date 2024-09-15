@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Context/Auth";
 
 export default function NavBar() {
+  const { authenticated, logout } = useContext(AuthContext);
+
+  const logoutLink = () => {
+    if (authenticated) {
+      return (
+        <li>
+          <a href="/" onClick={logout}>
+            Sair
+          </a>
+        </li>
+      );
+    }
+    return null;
+  };
+
   return (
     <nav>
       <ul id="MenuItens">
@@ -33,6 +49,7 @@ export default function NavBar() {
             Minha Conta
           </a>
         </li>
+        {logoutLink()}
       </ul>
     </nav>
   );

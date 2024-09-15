@@ -10,6 +10,7 @@ import Private from "./Components/Private";
 import Account from "./Pages/Account";
 import Company from "./Pages/Company";
 import Contacts from "./Pages/Contacts";
+import Register from "./Pages/Register/Register";
 
 export default function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ export default function AppRoutes() {
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/company" element={<Company />} />
           <Route exact path="/contacts" element={<Contacts />} />
+          <Route exact path="/register" element={<Register />} />
           <Route
             exact
             path="/productview/:productName"
