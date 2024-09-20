@@ -49,7 +49,7 @@ export default function ProductView() {
       productsInCart.push(productWithQuantity);
     }
 
-          localStorage.setItem("products", JSON.stringify(productsInCart));
+    localStorage.setItem("products", JSON.stringify(productsInCart));
 
     alert("Produto adicionado ao carrinho!");
   };
