@@ -23,10 +23,29 @@ export const register = async (form) => {
 export const getProducts = async () => {
   try {
     const response = await api.get("/produtos");
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching produtos:", error);
+    throw error;
+  }
+};
+
+export const getUser = async (userId) => {
+  try {
+    // Obtenha o token de autenticação do localStorage ou de onde ele estiver armazenado
+    const token = localStorage.getItem("token");
+
+    // Configure o cabeçalho de autorização com o token
+    const response = await api.get(`/usuarios/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching usuarios:", error);
     throw error;
   }
 };

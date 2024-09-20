@@ -46,8 +46,6 @@ export default function Forms() {
     event.preventDefault();
     const { doublePassword, ...formRest } = form;
 
-    // console.log(formRest);
-
     createUser(formRest);
   };
 

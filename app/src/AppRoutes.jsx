@@ -13,6 +13,8 @@ import Company from "./Pages/Company";
 import Contacts from "./Pages/Contacts";
 import Register from "./Pages/Register/Register";
 import Cart from "./Pages/Cart/Cart";
+import Checkout from "./Pages/Checkout/Checkout";
+import Confirmation from "./Pages/Confirmation/Confirmation";
 
 export default function AppRoutes() {
   return (
@@ -28,6 +30,8 @@ export default function AppRoutes() {
             <Route exact path="/contacts" element={<Contacts />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/cart" element={<Cart />} />
+            <Route exact path="/checkout" element={<Checkout />} />
+            <Route exact path="/confirmation" element={<Confirmation />} />
             <Route
               exact
               path="/productview/:productName"

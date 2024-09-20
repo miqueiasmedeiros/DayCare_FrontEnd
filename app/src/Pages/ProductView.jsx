@@ -39,7 +39,7 @@ export default function ProductView() {
     const productsInCart = JSON.parse(localStorage.getItem("products")) || [];
     const existingProductIndex = productsInCart.findIndex(
       (element) =>
-        product && element.id === product.id && element.size === product.size,
+        product && element.id === product.id && element.size === product.size
     );
 
     if (existingProductIndex !== -1) {

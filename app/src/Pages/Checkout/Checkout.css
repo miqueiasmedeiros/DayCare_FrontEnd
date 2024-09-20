@@ -1,0 +1,30 @@
+.form {
+  background-color: #b8b8b8;
+  color: black;
+  height: 100vh;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #b8b8b8;
+  /* padding: 1rem; */
+}
+
+.form-checkout-input {
+  padding: 0.5rem;
+}
+
+.finalizar-compra {
+  text-decoration: none;
+  color: var(--cor-fonte);
+  background: var(--cor-btn);
+  padding: 8px 30px;
+  margin: 30px 0;
+  border-radius: 30px;
+  transition: background 0.5s;
+  width: 50%;
+}

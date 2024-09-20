@@ -8,6 +8,7 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [id, setId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
 
@@ -23,15 +24,14 @@ export function AuthProvider({ children }) {
   }, []);
 
   const handleState = (response) => {
-    const loggedUser = response.data.login;
-    const { token } = response.data;
+    const { login, token, id } = response.data;
 
-    localStorage.setItem("user", JSON.stringify(loggedUser));
+    localStorage.setItem("user", JSON.stringify(id));
     localStorage.setItem("token", token);
 
     setToken(token);
 
-    setUser(loggedUser);
+    setUser(login);
 
     setAuthenticated(true);
 
@@ -40,6 +40,7 @@ export function AuthProvider({ children }) {
 
   const login = async (form) => {
     const response = await createSession(form);
+    console.log(response);
 
     handleState(response);
   };
@@ -55,6 +56,7 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setToken(null);
     setUser(null);
+    setId(null);
     setAuthenticated(false);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -66,6 +68,7 @@ export function AuthProvider({ children }) {
     authenticated,
     user,
     loading,
+    id,
     login,
     createUser,
     logout,

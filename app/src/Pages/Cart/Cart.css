@@ -52,7 +52,7 @@
   border: 1px solid #8b8b8b;
 }
 
-.finalizar-compra {
+.ir-pagamento {
   text-decoration: none;
   color: var(--cor-fonte);
   background: var(--cor-btn);
