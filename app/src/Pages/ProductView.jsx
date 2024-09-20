@@ -18,8 +18,6 @@ export default function ProductView() {
   const location = useLocation();
   const path = location.pathname;
 
-  // LÓGICA DO SIZE
-
   const changeSize = (e) => {
     const { value } = e.target;
     setProduct({ ...product, size: value });
@@ -32,7 +30,6 @@ export default function ProductView() {
       const qty = Number(value);
       setQuantity(qty);
       setProduct({ ...product, quantity: qty });
-      console.log(quantity);
     } else {
       setProduct({ ...product, quantity });
     }
@@ -40,23 +37,21 @@ export default function ProductView() {
 
   const setProductsToLocalStorage = () => {
     const productsInCart = JSON.parse(localStorage.getItem("products")) || [];
-    if (product) {
-      const existingProductIndex = productsInCart.findIndex(
-        ({ id, size }) => id === product.id && size === product.size
-      );
-      const productSize = productsInCart[existingProductIndex].size;
-      if (existingProductIndex !== -1 && productSize === size) {
-        console.log(
-          parseInt(productsInCart[existingProductIndex].quantity, 10)
-        );
-        productsInCart[existingProductIndex].quantity += quantity;
-      } else {
-        const productWithQuantity = { ...product, quantity };
-        productsInCart.push(productWithQuantity);
-      }
+    const existingProductIndex = productsInCart.findIndex(
+      (element) =>
+        product && element.id === product.id && element.size === product.size,
+    );
 
-      localStorage.setItem("products", JSON.stringify(productsInCart));
+    if (existingProductIndex !== -1) {
+      productsInCart[existingProductIndex].quantity += quantity;
+    } else {
+      const productWithQuantity = { ...product, quantity };
+      productsInCart.push(productWithQuantity);
     }
+
+          localStorage.setItem("products", JSON.stringify(productsInCart));
+
+    alert("Produto adicionado ao carrinho!");
   };
 
   const findProduct = (data) => {
@@ -64,13 +59,14 @@ export default function ProductView() {
     const foundProduct = data.find(({ id }) => {
       return id === productId;
     });
-    setProduct(foundProduct);
-    return foundProduct;
+    const wholeProduct = { ...foundProduct, quantity, size };
+    setProduct(wholeProduct);
+    // return foundProduct;
   };
 
   const renderCategoriesProducts = () => {
     const productsCategories = allProducts.filter((element) => {
-      return element.categoria_id === product.categoria_id;
+      return product && element.categoria_id === product.categoria_id;
     });
     return productsCategories.map((element) => {
       return (

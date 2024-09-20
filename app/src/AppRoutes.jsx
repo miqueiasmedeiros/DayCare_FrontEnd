@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Routers, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./Context/Auth";
+import { CartProvider } from "./Context/Cart";
 import Home from "./Pages/Home";
 import Subscribe from "./Pages/Subscribe";
 import Login from "./Pages/Login/Login";
@@ -11,37 +12,39 @@ import Account from "./Pages/Account";
 import Company from "./Pages/Company";
 import Contacts from "./Pages/Contacts";
 import Register from "./Pages/Register/Register";
-import Cart from "./Pages/Cart";
+import Cart from "./Pages/Cart/Cart";
 
 export default function AppRoutes() {
   return (
     <Routers>
       <AuthProvider>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/subscribe" element={<Subscribe />} />
-          <Route exact path="/products" element={<Products />} />
-          <Route exact path="/company" element={<Company />} />
-          <Route exact path="/contacts" element={<Contacts />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/cart" element={<Cart />} />
-          <Route
-            exact
-            path="/productview/:productName"
-            element={<ProductView />}
-          />
-          <Route
-            exact
-            path="account"
-            element={
-              <Private>
-                <Account />
-              </Private>
-            }
-          />
-          {/* <Route exact path="/admin" element={<Private><Account /></Private>} /> */}
-        </Routes>
+        <CartProvider>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/subscribe" element={<Subscribe />} />
+            <Route exact path="/products" element={<Products />} />
+            <Route exact path="/company" element={<Company />} />
+            <Route exact path="/contacts" element={<Contacts />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/cart" element={<Cart />} />
+            <Route
+              exact
+              path="/productview/:productName"
+              element={<ProductView />}
+            />
+            <Route
+              exact
+              path="account"
+              element={
+                <Private>
+                  <Account />
+                </Private>
+              }
+            />
+            {/* <Route exact path="/admin" element={<Private><Account /></Private>} /> */}
+          </Routes>
+        </CartProvider>
       </AuthProvider>
     </Routers>
   );
