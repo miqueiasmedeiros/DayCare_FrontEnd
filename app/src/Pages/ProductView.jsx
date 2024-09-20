@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Brands from "../Components/Brands";
 import Header from "../Components/Header";
-// import MainProducts from "../Components/MainProducts";
 import Footer from "../Components/Footer";
 import { getProducts } from "../Services/Api";
-// import Loading from "../Components/Loading";
 import MainProductsCard from "../Components/MainProductsCard";
 import Loading from "../Components/Loading";
 
@@ -13,9 +11,53 @@ export default function ProductView() {
   const [allProducts, setAllProducts] = useState([]);
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState("");
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
   const location = useLocation();
   const path = location.pathname;
+
+  // LÓGICA DO SIZE
+
+  const changeSize = (e) => {
+    const { value } = e.target;
+    setProduct({ ...product, size: value });
+    setSize(value);
+  };
+
+  const changeQuantity = (e) => {
+    if (e) {
+      const { value } = e.target;
+      const qty = Number(value);
+      setQuantity(qty);
+      setProduct({ ...product, quantity: qty });
+      console.log(quantity);
+    } else {
+      setProduct({ ...product, quantity });
+    }
+  };
+
+  const setProductsToLocalStorage = () => {
+    const productsInCart = JSON.parse(localStorage.getItem("products")) || [];
+    if (product) {
+      const existingProductIndex = productsInCart.findIndex(
+        ({ id, size }) => id === product.id && size === product.size
+      );
+      const productSize = productsInCart[existingProductIndex].size;
+      if (existingProductIndex !== -1 && productSize === size) {
+        console.log(
+          parseInt(productsInCart[existingProductIndex].quantity, 10)
+        );
+        productsInCart[existingProductIndex].quantity += quantity;
+      } else {
+        const productWithQuantity = { ...product, quantity };
+        productsInCart.push(productWithQuantity);
+      }
+
+      localStorage.setItem("products", JSON.stringify(productsInCart));
+    }
+  };
 
   const findProduct = (data) => {
     const productId = parseInt(path.substring(path.lastIndexOf("/") + 1), 10);
@@ -49,7 +91,7 @@ export default function ProductView() {
     const data = await getProducts();
     setAllProducts(data);
     findProduct(data);
-    renderCategoriesProducts(data);
+    renderCategoriesProducts();
     setLoading(false);
   };
 
@@ -104,18 +146,30 @@ export default function ProductView() {
             <p>{nome}</p>
             <h1>Compre com desconto</h1>
             <h4>{`R$ ${valor}`}</h4>
-            <form action="" method="post">
-              <select name="" id="">
+            <form>
+              <select onChange={changeSize}>
                 <option value="">Selecione o Tamanho</option>
-                <option value="">P</option>
-                <option value="">M</option>
-                <option value="">G</option>
-                <option value="">XG</option>
-                <option value="">XXG</option>
+                <option value="P">P</option>
+                <option value="M">M</option>
+                <option value="G">G</option>
+                <option value="XG">XG</option>
+                <option value="XXG">XXG</option>
               </select>
 
-              <input type="number" name="" id="" value="1" />
-              <button type="submit" className="btn">
+              <input
+                type="number"
+                name=""
+                id=""
+                onChange={changeQuantity}
+                defaultValue="1"
+                min="0"
+              />
+              <button
+                type="button"
+                className="btn"
+                onClick={setProductsToLocalStorage}
+                disabled={btnDisabled}
+              >
                 Adicionar ao Carrinho
               </button>
             </form>
@@ -129,7 +183,18 @@ export default function ProductView() {
 
   useEffect(() => {
     fetchProducts();
+    changeQuantity();
   }, []);
+
+  useEffect(() => {
+    changeQuantity();
+  }, [quantity]);
+
+  useEffect(() => {
+    if (size) {
+      setBtnDisabled(false);
+    }
+  }, [size]);
 
   return (
     <>

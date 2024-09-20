@@ -13,7 +13,7 @@ export default function ProductsBanner() {
           </div>
           <NavBar />
           <a
-            href="carrinho.html"
+            href="/cart"
             title="Carrinho de Compras"
             aria-label="Carrinho de Compras"
           >

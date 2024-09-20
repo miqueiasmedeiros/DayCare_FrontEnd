@@ -5,8 +5,6 @@ import { starOutline } from "ionicons/icons";
 
 export default function MainProductsCard(props) {
   const { id, nome, preco, descricao, imagem } = props;
-  // const img = Object.values(imagem);
-  // console.log(imagem);
   return (
     <>
       <a href={`/productview/${id}`} title="">

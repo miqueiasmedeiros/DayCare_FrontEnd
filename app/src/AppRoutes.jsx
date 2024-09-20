@@ -11,6 +11,7 @@ import Account from "./Pages/Account";
 import Company from "./Pages/Company";
 import Contacts from "./Pages/Contacts";
 import Register from "./Pages/Register/Register";
+import Cart from "./Pages/Cart";
 
 export default function AppRoutes() {
   return (
@@ -24,6 +25,7 @@ export default function AppRoutes() {
           <Route exact path="/company" element={<Company />} />
           <Route exact path="/contacts" element={<Contacts />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/cart" element={<Cart />} />
           <Route
             exact
             path="/productview/:productName"
